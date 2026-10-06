@@ -1,0 +1,94 @@
+/* rodape.css */
+
+.rodape {
+  background-color: #0d2240;
+  color: #ffffff;
+  padding: 3rem 0 1.5rem 0;
+  margin-top: auto;
+  width: 100%;
+}
+
+.rodape .rodape-conteiner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.rodape-conteudo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.rodape-secao h4 {
+  color: #ffffff;
+  margin-bottom: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.rodape-secao ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.rodape-secao a {
+  color: #bdbdbd;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.25s ease-in-out;
+}
+
+.rodape-secao a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.icones-pagamento, 
+.selos-seguranca, 
+.icones-sociais {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.icones-pagamento img, 
+.selos-seguranca img, 
+.icones-sociais img {
+  height: 30px;
+  width: auto;
+}
+
+.rodape-direitos {
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #bdbdbd;
+  font-size: 0.875rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .rodape-conteudo {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .rodape-conteudo {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+
+  .rodape-secao h4 {
+    margin-bottom: 0.8rem;
+  }
+}

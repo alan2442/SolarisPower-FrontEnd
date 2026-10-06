@@ -1,0 +1,348 @@
+:root {
+  --solaris-azul: #007bff;
+  --solaris-azul-escuro: #0056b3;
+  --solaris-azul-suave: rgba(0, 123, 255, 0.08);
+  --solaris-grafite: #1e293b;
+  --solaris-cinza-texto: #64748b;
+  --solaris-cinza-fundo: #f8fafc;
+  --solaris-borda: #e2e8f0;
+  --solaris-branco: #ffffff;
+  --solaris-sombra: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+.solaris-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--solaris-borda);
+  box-shadow: var(--solaris-sombra);
+  font-family: system-ui, -apple-system, Roboto, sans-serif;
+}
+
+.solaris-topbar {
+  background-color: #0f172a;
+  color: #94a3b8;
+  font-size: 0.78rem;
+  padding: 0.4rem 0;
+}
+
+.topbar-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar-links {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.topbar-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+}
+
+.solaris-header-main {
+  width: 100%;
+  padding: 0.8rem 0;
+}
+
+.header-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+/* COLUNA 1: LOGO E HAMBÚRGUER */
+.header-col-esquerda {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.solaris-logo img {
+  height: 85px; /* Logo Ampliada */
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.btn-hamburguer {
+  display: none; /* Escondido por padrão em telas grandes */
+  background: transparent;
+  border: none;
+  color: var(--solaris-grafite);
+  cursor: pointer;
+  padding: 0.2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* COLUNA 2: DESKTOP NAV & BUSCA */
+.header-col-centro {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-desktop ul {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-desktop a {
+  text-decoration: none;
+  color: var(--solaris-grafite);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.campo-busca-desktop {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+}
+
+.campo-busca-desktop input {
+  width: 100%;
+  padding: 0.55rem 2.5rem 0.55rem 1rem;
+  border: 1px solid var(--solaris-borda);
+  border-radius: 50px;
+  font-size: 0.88rem;
+  outline: none;
+  background-color: var(--solaris-cinza-fundo);
+}
+
+.campo-busca-desktop button {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--solaris-cinza-texto);
+  cursor: pointer;
+}
+
+/* COLUNA 3: DIREITA */
+.header-col-direita {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.btn-lupa-mobile {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--solaris-grafite);
+  cursor: pointer;
+}
+
+.usuario-bloco {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.usuario-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--solaris-cinza-fundo);
+  border: 1px solid var(--solaris-borda);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.usuario-textos {
+  display: flex;
+  flex-direction: column;
+}
+
+.saudacao {
+  font-size: 0.72rem;
+  color: var(--solaris-cinza-texto);
+}
+
+.btn-perfil {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: var(--solaris-azul);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+}
+
+.btn-carrinho {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: var(--solaris-azul);
+  color: var(--solaris-branco);
+  border-radius: 50%;
+  position: relative;
+  text-decoration: none;
+}
+
+.carrinho-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-contador {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: var(--solaris-branco);
+  color: var(--solaris-azul);
+  font-size: 0.7rem;
+  font-weight: 800;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* BUSCA MOBILE & GAVETA */
+.busca-mobile-drop {
+  background-color: var(--solaris-branco);
+  padding: 0.75rem 1.5rem;
+  border-top: 1px solid var(--solaris-borda);
+}
+
+.busca-mobile-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.busca-mobile-container input {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--solaris-borda);
+  border-radius: 6px;
+}
+
+.busca-mobile-container button {
+  background-color: var(--solaris-azul);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0 1rem;
+}
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.5);
+  z-index: 1050;
+}
+
+.gaveta-mobile {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100vh;
+  background-color: var(--solaris-branco);
+  z-index: 1100;
+  transition: transform 0.3s ease;
+}
+
+.gaveta-mobile.aberta {
+  transform: translateX(280px);
+}
+
+.gaveta-cabecalho {
+  padding: 1.2rem;
+  border-bottom: 1px solid var(--solaris-borda);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-fechar-gaveta {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-mobile ul {
+  list-style: none;
+  padding: 1rem 0;
+  margin: 0;
+}
+
+.nav-mobile a {
+  display: block;
+  padding: 0.8rem 1.5rem;
+  text-decoration: none;
+  color: var(--solaris-grafite);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (RESPONSIVIDADE FORÇADA PARA MOBILE E TABLET)
+   ========================================================================== */
+@media (max-width: 900px) {
+  .solaris-topbar,
+  .nav-desktop,
+  .campo-busca-desktop {
+    display: none !important;
+  }
+
+  .btn-hamburguer,
+  .btn-lupa-mobile {
+    display: flex !important;
+  }
+
+  .header-col-centro {
+    display: none;
+  }
+
+  .solaris-logo img {
+    height: 60px; /* Redução suave apenas no mobile para não achatar telas pequenas */
+  }
+}
+
+@media (max-width: 600px) {
+  .usuario-bloco {
+    display: none;
+  }
+
+  .solaris-logo img {
+    height: 50px;
+  }
+
+  .btn-carrinho {
+    width: 38px;
+    height: 38px;
+  }
+}

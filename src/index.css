@@ -1,0 +1,32 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.App {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  
+  flex-direction: column;
+}
+
+
+/* index.css ou App.css */
+
+/* Garante que o container ocupe 100% da altura da tela */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* O conteúdo principal empurra o rodapé para baixo */
+.conteudo-principal {
+  flex: 1;
+}

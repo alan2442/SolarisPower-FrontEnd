@@ -1,0 +1,349 @@
+/* loginEmpresa.css */
+
+:root {
+  --primary-blue: #0056b3;
+  --secondary-cyan: #00c4ff;
+  --accent-gold: #ffc107;
+  --background-dark: #0d2240;
+  --background-card-dark: #09172c;
+  --text-dark: #2d3748;
+  --text-muted: #718096;
+  --border-color: #e2e8f0;
+  --bg-input: #f8fafc;
+  --sucesso: #10b981;
+  --erro: #ef4444;
+}
+
+/* --- Layout da Página --- */
+.pagina-login-empresa {
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f2f5;
+  padding: 2rem 1rem;
+}
+
+.cartao-login-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  width: 100%;
+  max-width: 980px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px -5px rgba(13, 34, 64, 0.15);
+  overflow: hidden;
+}
+
+/* --- Painel B2B / Corporativo (Esquerda) --- */
+.painel-institucional-empresa {
+  background: linear-gradient(145deg, #09172c 0%, #0d2240 60%, #153747 100%);
+  color: #ffffff;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  border-right: 3px solid var(--accent-gold);
+}
+
+.badge-b2b {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(255, 193, 7, 0.15);
+  color: var(--accent-gold);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.825rem;
+  font-weight: 700;
+  width: fit-content;
+  margin-bottom: 2rem;
+}
+
+.painel-institucional-empresa h2 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.painel-institucional-empresa p {
+  color: #a0aec0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.recursos-b2b {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin: 1.5rem 0;
+}
+
+.item-recurso {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.875rem;
+  color: #e2e8f0;
+}
+
+.dot-recurso {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--secondary-cyan);
+}
+
+.rodape-institucional {
+  font-size: 0.8rem;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* --- Painel Formulário (Direita) --- */
+.painel-formulario {
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cabecalho-form {
+  margin-bottom: 2rem;
+}
+
+.tag-modulo {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+  letter-spacing: 1px;
+}
+
+.cabecalho-form h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--background-dark);
+  margin-top: 0.2rem;
+  margin-bottom: 0.3rem;
+  letter-spacing: -0.5px;
+}
+
+.cabecalho-form p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* --- Alertas --- */
+.alerta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.alerta-sucesso {
+  background-color: #ecfdf5;
+  color: var(--sucesso);
+  border: 1px solid #a7f3d0;
+}
+
+.alerta-erro {
+  background-color: #fef2f2;
+  color: var(--erro);
+  border: 1px solid #fecaca;
+}
+
+/* --- Formulário e Inputs --- */
+.formulario-login {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.grupo-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.grupo-input label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.input-com-icone {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icone-campo {
+  position: absolute;
+  left: 14px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.input-com-icone input {
+  width: 100%;
+  height: 48px;
+  padding: 0 1rem 0 2.8rem;
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-input);
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  transition: all 0.2s ease;
+}
+
+.input-com-icone input:focus {
+  outline: none;
+  border-color: var(--background-dark);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(13, 34, 64, 0.12);
+}
+
+.btn-toggle-senha {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.btn-toggle-senha:hover {
+  color: var(--text-dark);
+}
+
+/* --- Botão B2B --- */
+.btn-entrar-b2b {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: 48px;
+  background-color: var(--background-dark);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.btn-entrar-b2b:hover {
+  background-color: #132a4a;
+  transform: translateY(-1px);
+}
+
+/* --- Links de Navegação --- */
+.links-navegacao {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.texto-cadastro {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.link-destaque-b2b {
+  color: var(--background-dark);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.link-destaque-b2b:hover {
+  text-decoration: underline;
+}
+
+.divisor-links {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0 1rem 0;
+}
+
+.divisor-links::before,
+.divisor-links::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.divisor-links span {
+  padding: 0 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.acoes-cliente {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.btn-link-secundario {
+  padding: 0.6rem 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--background-dark);
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-link-secundario:hover {
+  background-color: #e2e8f0;
+  color: var(--primary-blue);
+}
+
+/* --- Responsividade --- */
+@media (max-width: 850px) {
+  .cartao-login-wrapper {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+  }
+
+  .painel-institucional-empresa {
+    display: none;
+  }
+
+  .painel-formulario {
+    padding: 2.5rem 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagina-login-empresa {
+    padding: 1rem 0.5rem;
+  }
+
+  .acoes-cliente {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,258 @@
+/* sobreNos.css */
+
+:root {
+  --cor-fundo-escuro: #0d2240;
+  --cor-fundo-cartao: #132a4a;
+  --cor-azul-destaque: #00c4ff;
+  --cor-amarelo-destaque: #ffc107;
+  --cor-texto-principal: #ffffff;
+  --cor-texto-secundario: #a0aec0;
+  --cor-texto-escuro: #2d3748;
+  --sombra-cartao: 0 10px 30px -5px rgba(0, 0, 0, 0.15);
+  --transicao-suave: all 0.3s ease-in-out;
+}
+
+.pagina-sobre {
+  width: 100%;
+  background-color: #f4f6f9;
+  min-height: 85vh;
+}
+
+/* --- Banner de Cabeçalho --- */
+.banner-sobre {
+  background: linear-gradient(135deg, #09172c 0%, #0d2240 100%);
+  color: var(--cor-texto-principal);
+  padding: 4.5rem 1.5rem 4rem 1.5rem;
+  text-align: center;
+}
+
+.conteiner-banner-sobre {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.banner-sobre h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+
+.banner-sobre p {
+  color: var(--cor-texto-secundario);
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+.destaque-texto {
+  color: var(--cor-azul-destaque);
+}
+
+/* --- Estrutura Geral --- */
+.conteiner-sobre {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* --- Quem Somos --- */
+.secao-quem-somos {
+  padding: 4rem 0;
+}
+
+.secao-quem-somos .conteiner-sobre {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.texto-quem-somos h2 {
+  font-size: 2.2rem;
+  color: var(--cor-fundo-escuro);
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+
+.texto-quem-somos h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: var(--cor-amarelo-destaque);
+  margin-top: 0.5rem;
+  border-radius: 2px;
+}
+
+.texto-quem-somos p {
+  color: var(--cor-texto-escuro);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.grade-diferenciais {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.cartao-diferencial {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 5px solid var(--cor-azul-destaque);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transicao-suave);
+}
+
+.cartao-diferencial:hover {
+  transform: translateX(5px);
+}
+
+.numero-diferencial {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--cor-fundo-escuro);
+}
+
+.legenda-diferencial {
+  font-size: 0.95rem;
+  color: #718096;
+  font-weight: 600;
+}
+
+/* --- Missão e Visão --- */
+.secao-pilares {
+  background-color: #ffffff;
+  padding: 5rem 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+.grade-missao-visao {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.cartao-pilar {
+  background-color: var(--cor-fundo-escuro);
+  color: var(--cor-texto-principal);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: var(--sombra-cartao);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: var(--transicao-suave);
+}
+
+.cartao-pilar:hover {
+  transform: translateY(-5px);
+  border-color: var(--cor-azul-destaque);
+}
+
+.icone-pilar {
+  width: 56px;
+  height: 56px;
+  background-color: rgba(0, 196, 255, 0.15);
+  color: var(--cor-azul-destaque);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.cartao-pilar h3 {
+  font-size: 1.6rem;
+  color: var(--cor-amarelo-destaque);
+  margin-bottom: 1rem;
+}
+
+.cartao-pilar p {
+  color: var(--cor-texto-secundario);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* --- Valores --- */
+.bloco-valores {
+  margin-top: 2rem;
+}
+
+.titulo-valores {
+  font-size: 2rem;
+  color: var(--cor-fundo-escuro);
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.grade-valores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.cartao-valor {
+  background-color: #f8fafc;
+  padding: 1.8rem;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  position: relative;
+  transition: var(--transicao-suave);
+}
+
+.cartao-valor:hover {
+  background-color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.marcador-valor {
+  width: 40px;
+  height: 4px;
+  background-color: var(--cor-azul-destaque);
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+.cartao-valor h4 {
+  font-size: 1.15rem;
+  color: var(--cor-fundo-escuro);
+  margin-bottom: 0.6rem;
+}
+
+.cartao-valor p {
+  font-size: 0.95rem;
+  color: #4a5568;
+  line-height: 1.5;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 992px) {
+  .secao-quem-somos .conteiner-sobre {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .grade-missao-visao {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .banner-sobre h1 {
+    font-size: 2.1rem;
+  }
+
+  .cartao-pilar {
+    padding: 1.8rem 1.5rem;
+  }
+
+  .secao-quem-somos, 
+  .secao-pilares {
+    padding: 3rem 0;
+  }
+}
