@@ -108,12 +108,33 @@
   padding: 0;
 }
 
+/* MODIFICAÇÃO: Linha mais grossa crescendo do centro para as laterais */
 .nav-desktop a {
+  position: relative;
   text-decoration: none;
   color: var(--solaris-grafite);
   font-weight: 600;
   font-size: 0.92rem;
+  padding-bottom: 4px;
 }
+
+.nav-desktop a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;              /* Começa no meio do link */
+  transform: translateX(-50%); /* Centraliza o ponto de partida */
+  width: 0;               /* Inicia com largura zero */
+  height: 3px;            /* Espessura aumentada para 3px (mais grossa) */
+  background-color: var(--solaris-azul);
+  border-radius: 2px;     /* Opcional: arredonda levemente as pontas da linha */
+  transition: width 0.4s ease-in-out; /* Suavidade no movimento */
+}
+
+.nav-desktop a:hover::after {
+  width: 100%;            /* Expande totalmente para os lados */
+}
+/* FIM DA MODIFICAÇÃO */
 
 .campo-busca-desktop {
   position: relative;
@@ -309,7 +330,7 @@
 }
 
 /* ==========================================================================
-   MEDIA QUERIES (RESPONSIVIDADE FORÇADA PARA MOBILE E TABLET)
+    MEDIA QUERIES (RESPONSIVIDADE FORÇADA PARA MOBILE E TABLET)
    ========================================================================== */
 @media (max-width: 900px) {
   .solaris-topbar,

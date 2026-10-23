@@ -27,9 +27,9 @@ function Footer() {
                     <div className="rodape-secao">
                         <h4>Institucional</h4>
                         <ul>
-                            <li><Link to="/sobre">Sobre Nós</Link></li>
-                            <li><Link to="/noticia">Notícias</Link></li>
-                            <li><Link to="/duvidas">Dúvidas Frequentes</Link></li>
+                            <li><Link to="/sobreNos">Quem Somos</Link></li>
+                            <li><Link to="/sobre">Sobre Energia Solar   </Link></li>
+                            <li><Link to="/duvidas">Central de Ajuda</Link></li>
                         </ul>
                     </div>
 
@@ -38,8 +38,8 @@ function Footer() {
                         <h4>Atendimento</h4>
                         <ul>
                             <li><Link to="/suporte">Fale Conosco</Link></li>
-                            <li><Link to="/politica-de-privacidade">Política de Privacidade</Link></li>
-                            <li><Link to="/termos-de-uso">Termos de Uso</Link></li>
+                            <li><Link to="/politicaDePrivacidade">Política de Privacidade</Link></li>
+                            <li><Link to="/termosDeUso">Termos de Uso</Link></li>
                         </ul>
                     </div>
 

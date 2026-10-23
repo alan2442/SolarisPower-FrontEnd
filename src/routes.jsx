@@ -22,6 +22,10 @@ import CalculadoraSolar from "./pages/CalculadoraSolar";
 import Perfil from "./pages/Perfil";
 import PerfilEmpresa from "./pages/PerfilEmpresa";
 import CadastroProduto from "./pages/CadastroProduto";
+import ChatBot from "./components/ChatBot/ChatBot";
+import PoliticaDePrivacidade from "./pages/PoliticaDePrivacidade";
+import TermosDeUso from "./pages/TermosDeUso";
+
 
 // Páginas de Retorno do Mercado Pago
 import Sucesso from './pages/Carrinho/Sucesso';
@@ -101,6 +105,9 @@ function RoutesApp() {
               <Route path="/perfil" element={<Perfil />} />
               <Route path="/perfilEmpresa" element={<PerfilEmpresa />} />
               <Route path="/cadastrarProdutos" element={<CadastroProduto />} />
+              <Route path="/politicaDePrivacidade" element={<PoliticaDePrivacidade />} />
+              <Route path="/termosDeUso" element={<TermosDeUso />} />
+
 
               {/* Rotas de Retorno do Checkout Mercado Pago */}
               <Route path="/sucesso" element={<Sucesso />} />
@@ -108,10 +115,13 @@ function RoutesApp() {
               <Route path="/pendente" element={<PagamentoPendente />} />
 
               <Route path="*" element={<Erro />} />
-            </Routes>
+            </Routes> 
+
+
           </main>
 
           <Footer />
+          <ChatBot />
         </div>
       </CartProvider>
     </BrowserRouter>

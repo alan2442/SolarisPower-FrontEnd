@@ -1,0 +1,551 @@
+
+/* =========================================
+   SOLARISPOWER — CHATBOT ENERGIA SOLAR
+   ========================================= */
+
+.chatbot-container {
+    --amarelo-solar: #ffda44;
+    --amarelo-claro: #fff3a6;
+    --dourado: #ffb800;
+    --laranja-solar: #ff8c24;
+    --azul-escuro: #17324d;
+    --texto: #293746;
+
+    position: fixed;
+    right: 28px;
+    bottom: 28px;
+    z-index: 9999;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* =========================================
+   BOTÃO FLUTUANTE
+   ========================================= */
+
+.chatbot-botao-flutuante {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+
+    background: linear-gradient(
+        145deg,
+        #fff39b 0%,
+        #ffda44 45%,
+        #ffad20 100%
+    );
+
+    color: #754500;
+    font-size: 31px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+        0 0 0 5px rgba(255, 193, 7, 0.12),
+        0 0 28px rgba(255, 174, 0, 0.35),
+        0 8px 24px rgba(106, 69, 0, 0.22);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* Raios decorativos ao redor do botão */
+
+.chatbot-botao-flutuante::before {
+    content: "";
+    position: absolute;
+    inset: -9px;
+
+    border: 2px dashed rgba(255, 184, 0, 0.7);
+    border-radius: 50%;
+
+    animation: girar-raios-solares 18s linear infinite;
+    pointer-events: none;
+}
+
+.chatbot-botao-flutuante:hover {
+    transform: translateY(-5px) scale(1.06);
+
+    box-shadow:
+        0 0 0 7px rgba(255, 193, 7, 0.14),
+        0 0 38px rgba(255, 174, 0, 0.5),
+        0 12px 28px rgba(106, 69, 0, 0.25);
+}
+
+@keyframes girar-raios-solares {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================
+   JANELA DO CHAT
+   ========================================= */
+
+.chatbot-janela {
+    position: absolute;
+    right: 0;
+    bottom: 92px;
+
+    width: 375px;
+    height: 550px;
+    max-height: calc(100dvh - 130px);
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    background: #fff;
+    border: 1px solid rgba(255, 184, 0, 0.3);
+    border-radius: 24px;
+
+    box-shadow:
+        0 25px 70px rgba(39, 45, 35, 0.18),
+        0 5px 18px rgba(255, 166, 30, 0.12);
+
+    animation: abrir-chat-solar 0.3s ease-out;
+}
+
+@keyframes abrir-chat-solar {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================================
+   CABEÇALHO — NASCER DO SOL
+   ========================================= */
+
+.chatbot-cabecalho {
+    position: relative;
+    isolation: isolate;
+    flex-shrink: 0;
+
+    padding: 22px 20px;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: linear-gradient(
+        115deg,
+        #fff29b 0%,
+        #ffda44 38%,
+        #ffb32d 72%,
+        #ff9438 100%
+    );
+}
+
+/* Círculos decorativos que lembram o sol */
+
+.chatbot-cabecalho::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+
+    width: 170px;
+    height: 170px;
+
+    top: -105px;
+    right: -35px;
+
+    border: 20px solid rgba(255, 255, 255, 0.22);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 15px rgba(255, 255, 255, 0.08),
+        0 0 0 30px rgba(255, 255, 255, 0.05);
+}
+
+.chatbot-cabecalho::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+
+    width: 120px;
+    height: 120px;
+
+    right: 70px;
+    bottom: -100px;
+
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.chatbot-cabecalho h3 {
+    margin: 0 0 6px;
+
+    color: #4c330c;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+}
+
+.chatbot-cabecalho p {
+    margin: 0;
+
+    color: #695127;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Botão de fechar */
+
+.chatbot-fechar {
+    position: relative;
+    z-index: 1;
+
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.45);
+    color: #69420d;
+
+    font-size: 27px;
+    line-height: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.chatbot-fechar:hover {
+    background: #fff;
+    transform: rotate(90deg);
+}
+
+/* =========================================
+   ÁREA DAS MENSAGENS
+   ========================================= */
+
+.chatbot-mensagens {
+    flex: 1;
+    min-height: 0;
+
+    overflow-y: auto;
+    padding: 20px 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    background-color: #fff;
+
+    background-image:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(255, 218, 68, 0.13),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 0% 100%,
+            rgba(255, 140, 36, 0.06),
+            transparent 30%
+        );
+
+    scrollbar-width: thin;
+    scrollbar-color: #efd99a transparent;
+}
+
+.chatbot-mensagens::-webkit-scrollbar {
+    width: 5px;
+}
+
+.chatbot-mensagens::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #efd99a;
+}
+
+/* =========================================
+   BALÕES DE MENSAGEM
+   ========================================= */
+
+.chatbot-mensagem {
+    max-width: 88%;
+    width: fit-content;
+
+    padding: 12px 15px;
+
+    border-radius: 17px;
+
+    font-size: 13px;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+
+    animation: aparecer-mensagem 0.2s ease-out;
+}
+
+@keyframes aparecer-mensagem {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mensagem do assistente */
+
+.mensagem-bot {
+    align-self: flex-start;
+
+    color: #34414b;
+
+    background: linear-gradient(
+        145deg,
+        #fffdf6,
+        #fff8e5
+    );
+
+    border: 1px solid #f5ebcd;
+    border-bottom-left-radius: 5px;
+
+    box-shadow: 0 3px 9px rgba(82, 65, 22, 0.04);
+}
+
+/* Mensagem do usuário */
+
+.mensagem-usuario {
+    align-self: flex-end;
+
+    color: #51360b;
+
+    background: linear-gradient(
+        135deg,
+        #ffec83 0%,
+        #ffd34b 65%,
+        #ffc23a 100%
+    );
+
+    border: 1px solid rgba(239, 174, 20, 0.2);
+    border-bottom-right-radius: 5px;
+
+    box-shadow: 0 3px 10px rgba(224, 163, 15, 0.1);
+}
+
+/* =========================================
+   INDICADOR DE CARREGAMENTO
+   ========================================= */
+
+.chatbot-mensagem.mensagem-bot:last-child {
+    /* Mantém o estilo padrão das respostas do bot. */
+}
+
+/* =========================================
+   FORMULÁRIO DE ENVIO
+   ========================================= */
+
+.chatbot-formulario {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 13px 14px;
+
+    border-top: 1px solid #f3ebd7;
+
+    background: linear-gradient(
+        180deg,
+        #fffefa,
+        #fff
+    );
+}
+
+.chatbot-formulario input {
+    flex: 1;
+    min-width: 0;
+
+    padding: 13px 14px;
+
+    border: 1px solid #eee6d1;
+    border-radius: 14px;
+    outline: none;
+
+    background: #fffdf8;
+    color: #34414b;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.chatbot-formulario input::placeholder {
+    color: #a5a092;
+}
+
+.chatbot-formulario input:focus {
+    border-color: #ffc62d;
+
+    box-shadow:
+        0 0 0 4px rgba(255, 196, 44, 0.13);
+}
+
+.chatbot-formulario input:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Botão enviar */
+
+.chatbot-formulario button {
+    flex-shrink: 0;
+
+    padding: 13px 15px;
+
+    border: none;
+    border-radius: 13px;
+
+    background: linear-gradient(
+        145deg,
+        #ffe86a,
+        #ffc12b 65%,
+        #ffad23
+    );
+
+    color: #69420d;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    box-shadow: 0 3px 9px rgba(232, 157, 0, 0.15);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.chatbot-formulario button:hover:not(:disabled) {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 14px rgba(232, 157, 0, 0.25);
+}
+
+.chatbot-formulario button:active:not(:disabled) {
+    transform: scale(0.96);
+}
+
+.chatbot-formulario button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* =========================================
+   CELULARES E TELAS PEQUENAS
+   ========================================= */
+
+@media (max-width: 480px) {
+    .chatbot-container {
+        right: 16px;
+        bottom: 16px;
+    }
+
+    .chatbot-botao-flutuante {
+        width: 62px;
+        height: 62px;
+    }
+
+    .chatbot-janela {
+        position: fixed;
+
+        right: 10px;
+        bottom: 88px;
+
+        width: calc(100vw - 20px);
+        height: min(600px, calc(100dvh - 112px));
+        max-height: calc(100dvh - 112px);
+
+        border-radius: 22px;
+    }
+
+    .chatbot-cabecalho {
+        padding: 19px 16px;
+    }
+
+    .chatbot-mensagens {
+        padding: 16px 12px;
+    }
+
+    .chatbot-formulario {
+        gap: 7px;
+        padding: 11px 10px;
+    }
+
+    .chatbot-formulario input {
+        padding: 12px 10px;
+    }
+
+    .chatbot-formulario button {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 350px) {
+    .chatbot-janela {
+        right: 6px;
+        width: calc(100vw - 12px);
+    }
+
+    .chatbot-cabecalho h3 {
+        font-size: 17px;
+    }
+
+    .chatbot-mensagem {
+        max-width: 93%;
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+}
+
+/* =========================================
+   ACESSIBILIDADE
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .chatbot-container *,
+    .chatbot-container *::before,
+    .chatbot-container *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}

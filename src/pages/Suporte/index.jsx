@@ -20,18 +20,32 @@ function Suporte() {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setStatusEnvio('enviando');
 
-        // Simulação de envio para backend/API
-        setTimeout(() => {
-            setStatusEnvio('sucesso');
-            setFormData({ nome: '', email: '', telefone: '', assunto: '', mensagem: '' });
+        try {
+            const response = await fetch('http://localhost:8080/api/suporte', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
 
-            // Reseta a mensagem de sucesso após 5 segundos
+            if (response.ok) {
+                setStatusEnvio('sucesso');
+                setFormData({ nome: '', email: '', telefone: '', assunto: '', mensagem: '' });
+            } else {
+                setStatusEnvio('erro');
+            }
+        } catch (error) {
+            console.error('Erro ao enviar mensagem:', error);
+            setStatusEnvio('erro');
+        } finally {
+            // Reseta a mensagem de status após 5 segundos
             setTimeout(() => setStatusEnvio(null), 5000);
-        }, 1200);
+        }
     };
 
 

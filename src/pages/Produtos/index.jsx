@@ -12,10 +12,11 @@ import {
   SlidersHorizontal,
   PackageCheck,
   X,
-  AlertTriangle
+  AlertTriangle,
+  Info
 } from 'lucide-react';
 
-import { useCart } from '../../components/Context/CartContext'; // Ajuste o caminho se necessário
+import { useCart } from '../../components/Context/CartContext'; 
 import './produtos.css';
 
 function Produtos() {
@@ -30,6 +31,9 @@ function Produtos() {
   const [categoriaAtiva, setCategoriaAtiva] = useState('todas');
   const [quantidades, setQuantidades] = useState({});
   const [toast, setToast] = useState(null);
+  
+  // Estado para armazenar o produto selecionado para exibir no Modal
+  const [produtoModal, setProdutoModal] = useState(null);
 
   // Busca os produtos cadastrados no Banco de Dados via Spring Boot
   useEffect(() => {
@@ -118,7 +122,7 @@ function Produtos() {
       preco: Number(produto.preco),
       imagemUrl: produto.imagemBase64 || produto.imagemUrl,
       categoria: produto.categoria || 'Equipamento',
-      estoqueMaximo: produto.quantidade // Salva o limite total no item se necessário
+      estoqueMaximo: produto.quantidade
     };
 
     // Adiciona ao contexto global
@@ -141,7 +145,7 @@ function Produtos() {
   // Filtros
   const produtosFiltrados = produtos.filter((prod) => {
     const atendeBusca = (prod.nome || '').toLowerCase().includes(busca.toLowerCase()) ||
-                        (prod.descricao || '').toLowerCase().includes(busca.toLowerCase());
+                       (prod.descricao || '').toLowerCase().includes(busca.toLowerCase());
     
     const categoriaProd = (prod.categoria || '').toLowerCase();
     const atendeCategoria = categoriaAtiva === 'todas' || categoriaProd === categoriaAtiva.toLowerCase();
@@ -236,6 +240,9 @@ function Produtos() {
               const qtdAtual = quantidades[produto.id] || 1;
               const semEstoque = estoqueTotal <= 0;
               const esgotadoNoCarrinho = disponivelParaAdicionar <= 0;
+              
+              // Se a descrição for maior que 45 caracteres, exibe o botão "Ver mais detalhes"
+              const descricaoLonga = produto.descricao && produto.descricao.length > 45;
 
               return (
                 <div key={produto.id} className="product-card">
@@ -256,50 +263,67 @@ function Produtos() {
 
                   {/* Detalhes do Produto */}
                   <div className="card-content">
-                    <h3 className="product-title">{produto.nome}</h3>
-                    <p className="product-description">{produto.descricao}</p>
-
-                    <div className="product-price-row">
-                      <span className="price-currency">R$</span>
-                      <span className="price-amount">
-                        {Number(produto.preco).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                      </span>
+                    <div className="info-topo-card">
+                      <span className="categoria-tag">{produto.categoria || 'Equipamento'}</span>
+                      <h3 className="product-title">{produto.nome}</h3>
+                    </div>
+                    
+                    {/* Descrição limitada rigorosamente a 2 linhas */}
+                    <div className="description-wrapper">
+                      <p className="product-description">{produto.descricao}</p>
+                      {descricaoLonga && (
+                        <button 
+                          type="button" 
+                          className="btn-toggle-description"
+                          onClick={() => setProdutoModal(produto)}
+                        >
+                          Ver mais detalhes
+                        </button>
+                      )}
                     </div>
 
-                    {/* Controles de Compra */}
-                    <div className="card-actions-wrapper">
-                      
-                      <div className="quantity-selector">
-                        <button
-                          type="button"
-                          onClick={() => handleQuantidadeChange(produto, -1)}
-                          className="btn-qty"
-                          disabled={semEstoque || esgotadoNoCarrinho || qtdAtual <= 1}
-                        >
-                          <Minus size={14} />
-                        </button>
-                        <span className="qty-number">{semEstoque || esgotadoNoCarrinho ? 0 : qtdAtual}</span>
-                        <button
-                          type="button"
-                          onClick={() => handleQuantidadeChange(produto, 1)}
-                          className="btn-qty"
-                          disabled={semEstoque || esgotadoNoCarrinho || qtdAtual >= disponivelParaAdicionar}
-                        >
-                          <Plus size={14} />
-                        </button>
+                    <div className="card-footer-info">
+                      <div className="product-price-row">
+                        <span className="price-currency">R$</span>
+                        <span className="price-amount">
+                          {Number(produto.preco).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                        </span>
                       </div>
 
-                      <button
-                        type="button"
-                        onClick={() => adicionarAoCarrinho(produto)}
-                        className="btn-add-cart"
-                        disabled={semEstoque || esgotadoNoCarrinho}
-                      >
-                        <ShoppingCart size={16} />
-                        <span>{semEstoque ? 'Indisponível' : esgotadoNoCarrinho ? 'Limite no Carrinho' : 'Adicionar'}</span>
-                      </button>
+                      {/* Controles de Compra */}
+                      <div className="card-actions-wrapper">
+                        <div className="quantity-selector">
+                          <button
+                            type="button"
+                            onClick={() => handleQuantidadeChange(produto, -1)}
+                            className="btn-qty"
+                            disabled={semEstoque || esgotadoNoCarrinho || qtdAtual <= 1}
+                          >
+                            <Minus size={14} />
+                          </button>
+                          <span className="qty-number">{semEstoque || esgotadoNoCarrinho ? 0 : qtdAtual}</span>
+                          <button
+                            type="button"
+                            onClick={() => handleQuantidadeChange(produto, 1)}
+                            className="btn-qty"
+                            disabled={semEstoque || esgotadoNoCarrinho || qtdAtual >= disponivelParaAdicionar}
+                          >
+                            <Plus size={14} />
+                          </button>
+                        </div>
 
+                        <button
+                          type="button"
+                          onClick={() => adicionarAoCarrinho(produto)}
+                          className="btn-add-cart"
+                          disabled={semEstoque || esgotadoNoCarrinho}
+                        >
+                          <ShoppingCart size={16} />
+                          <span>{semEstoque ? 'Indisponível' : esgotadoNoCarrinho ? 'Limite' : 'Adicionar'}</span>
+                        </button>
+                      </div>
                     </div>
+
                   </div>
 
                 </div>
@@ -315,6 +339,63 @@ function Produtos() {
         )}
 
       </div>
+
+      {/* --- MODAL AMPLO PARA DETALHES COMPLETOS DO PRODUTO --- */}
+      {produtoModal && (
+        <div className="modal-overlay" onClick={() => setProdutoModal(null)}>
+          <div className="modal-card-expanded" onClick={(e) => e.stopPropagation()}>
+            <button className="btn-close-modal" onClick={() => setProdutoModal(null)}>
+              <X size={20} />
+            </button>
+
+            <div className="modal-body-expanded">
+              <div className="modal-image-container-expanded">
+                <img 
+                  src={produtoModal.imagemBase64 || produtoModal.imagemUrl || 'https://via.placeholder.com/400x300?text=Sem+Imagem'} 
+                  alt={produtoModal.nome} 
+                />
+              </div>
+
+              <div className="modal-info-container-expanded">
+                <div className="modal-header-info">
+                  <span className="modal-category-badge">{produtoModal.categoria || 'Equipamento Solar'}</span>
+                  <h2>{produtoModal.nome}</h2>
+                </div>
+
+                <div className="modal-description-box-expanded">
+                  <h4><Info size={16} /> Descrição Completa do Produto</h4>
+                  <p>{produtoModal.descricao}</p>
+                </div>
+
+                <div className="modal-footer-expanded">
+                  <div className="modal-price-box">
+                    <span>Preço:</span>
+                    <div className="product-price-row">
+                      <span className="price-currency">R$</span>
+                      <span className="price-amount">
+                        {Number(produtoModal.preco).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                      </span>
+                    </div>
+                  </div>
+
+                  <button 
+                    className="btn-add-cart"
+                    style={{ flex: 'none', padding: '0.8rem 1.5rem' }}
+                    onClick={() => {
+                      adicionarAoCarrinho(produtoModal);
+                      setProdutoModal(null);
+                    }}
+                  >
+                    <ShoppingCart size={18} />
+                    <span>Adicionar ao Carrinho</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

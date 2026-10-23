@@ -345,16 +345,22 @@ function CadastroProduto() {
 
                             {/* Descrição */}
                             <div className="form-group col-span-full">
-                                <label className="form-label">Descrição</label>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <label className="form-label">Descrição</label>
+                                    <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
+                                        {formData.descricao ? formData.descricao.length : 0}/500 caracteres
+                                    </span>
+                                </div>
                                 <div className="input-container textarea-container">
                                     <FileText className="field-icon textarea-icon" />
                                     <textarea
                                         name="descricao"
-                                        value={formData.descricao}
+                                        value={formData.descricao || ''}
                                         onChange={handleChange}
-                                        rows="3"
+                                        rows="4"
+                                        maxLength={500}
                                         className="form-input textarea-input"
-                                        placeholder="Especifique características técnicas, garantia, etc."
+                                        placeholder="Especifique características técnicas, garantia, etc. (Máximo 500 caracteres)"
                                     />
                                 </div>
                             </div>

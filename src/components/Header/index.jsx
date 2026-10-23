@@ -114,9 +114,9 @@ function Header() {
             <nav className="nav-desktop">
               <ul>
                 <li><Link to="/produtos">Produtos</Link></li>
-                <li><Link to="/sobreNos">Sobre Nós</Link></li>
-                <li><Link to="/suporte">Suporte</Link></li>
+                <li><Link to="/sobreNos">Quem Somos</Link></li>
                 <li><Link to="/duvidas">Dúvidas</Link></li>
+                <li><Link to="/suporte">Suporte</Link></li>
               </ul>
             </nav>
 
@@ -205,9 +205,9 @@ function Header() {
         <nav className="nav-mobile">
           <ul>
             <li><Link to="/produtos" onClick={fecharMenu}>Produtos</Link></li>
-            <li><Link to="/sobreNos" onClick={fecharMenu}>Sobre Nós</Link></li>
-            <li><Link to="/suporte" onClick={fecharMenu}>Suporte</Link></li>
+            <li><Link to="/sobreNos" onClick={fecharMenu}>Quem Somos</Link></li>
             <li><Link to="/duvidas" onClick={fecharMenu}>Dúvidas</Link></li>
+            <li><Link to="/suporte" onClick={fecharMenu}>Suporte</Link></li>
           </ul>
         </nav>
       </aside>
