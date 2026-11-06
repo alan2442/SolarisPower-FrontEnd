@@ -16,7 +16,9 @@ import {
 } from 'lucide-react';
 import './cadastro.css';
 
-
+/**
+ * Componente responsável por renderizar a tela de cadastro de novos clientes do sistema.
+ */
 function Cadastro({ erroCadastro: erroProp }) {
 
     const navigate = useNavigate();
@@ -41,7 +43,7 @@ function Cadastro({ erroCadastro: erroProp }) {
         return val
             .replace(/\D/g, '')
             .replace(/(\d{2})(\d)/, '$1/$2')
-            .replace(/(\d{2})(\d)/, '$1/$2')             .replace(/(\d{4})\d+?$/, '$1');
+            .replace(/(\d{2})(\d)/, '$1/$2')            .replace(/(\d{4})\d+?$/, '$1');
     };
 
     // Máscara dinâmica para CPF (000.000.000-00)
@@ -49,7 +51,7 @@ function Cadastro({ erroCadastro: erroProp }) {
         return val
             .replace(/\D/g, '')
             .replace(/(\d{3})(\d)/, '$1.$2')
-            .replace(/(\d{3})(\d)/, '$1.$2')             .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            .replace(/(\d{3})(\d)/, '$1.$2')            .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
     };
 
     const handleChange = (e) => {
@@ -68,6 +70,9 @@ function Cadastro({ erroCadastro: erroProp }) {
         }));
     };
 
+    /**
+     * Valida os dados do formulário e envia a requisição de cadastro para o backend.
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErroValidacao('');

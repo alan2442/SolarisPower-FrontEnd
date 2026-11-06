@@ -2,28 +2,35 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, Search, ShoppingBag, User, Building2 } from 'lucide-react';
 
-import { useCart } from '../../components/Context/CartContext'; // 1. Import do hook do carrinho (ajuste o caminho se necessário)
-
+import { useCart } from '../../components/Context/CartContext';
 import logoImg from '../../assets/images/logo2.jpeg';
 import './header.css';
 
+/**
+ * Componente responsável por renderizar o cabeçalho principal da aplicação, incluindo navegação, busca e dados de usuário.
+ */
 function Header() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // 2. Consome o estado global do carrinho
   const { cartItems } = useCart();
-
-  // 3. Calcula a quantidade total de itens no carrinho
   const totalItensCarrinho = cartItems.reduce(
     (acc, item) => acc + (item.quantidade || 1), 0
   );
 
   const [menuAberto, setMenuAberto] = useState(false);
   const [buscaMobileAberta, setBuscaMobileAberta] = useState(false);
+  const [termoBusca, setTermoBusca] = useState('');
 
   const [usuario, setUsuario] = useState(null);
   const [empresa, setEmpresa] = useState(null);
+
+  // Sincroniza o input do header se houver query na URL
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const query = searchParams.get('busca') || '';
+    setTermoBusca(query);
+  }, [location.search]);
 
   // Carrega as informações do usuário/empresa logado do localStorage
   useEffect(() => {
@@ -48,12 +55,23 @@ function Header() {
       setUsuario(null);
       setEmpresa(null);
     }
-  }, [location]); // Reexecuta ao mudar de rota para manter o header atualizado após login/logout
+  }, [location]);
 
   const toggleMenu = () => setMenuAberto(!menuAberto);
   const fecharMenu = () => setMenuAberto(false);
 
-  // Lógica de Redirecionamento Dinâmico
+  // Lógica de Envio da Busca
+  const handleSearch = (e) => {
+    if (e) e.preventDefault();
+    if (termoBusca.trim()) {
+      navigate(`/produtos?busca=${encodeURIComponent(termoBusca.trim())}`);
+    } else {
+      navigate('/produtos');
+    }
+    setBuscaMobileAberta(false);
+    fecharMenu();
+  };
+
   const handlePerfilClick = () => {
     fecharMenu();
     if (empresa) {
@@ -65,7 +83,6 @@ function Header() {
     }
   };
 
-  // Texto dinâmico de saudação e rótulo do botão
   const getSaudacaoText = () => {
     if (empresa) return `Olá, ${empresa.nmEmpresa || 'Parceiro'}`;
     if (usuario) return `Olá, ${usuario.nmPessoa || 'Cliente'}`;
@@ -120,15 +137,20 @@ function Header() {
               </ul>
             </nav>
 
-            <div className="campo-busca-desktop">
-              <input type="text" placeholder="O que você precisa hoje?" />
-              <button type="button" aria-label="Buscar">
+            <form onSubmit={handleSearch} className="campo-busca-desktop">
+              <input 
+                type="text" 
+                placeholder="O que você precisa hoje?" 
+                value={termoBusca}
+                onChange={(e) => setTermoBusca(e.target.value)}
+              />
+              <button type="submit" aria-label="Buscar">
                 <Search size={18} />
               </button>
-            </div>
+            </form>
           </div>
 
-          {/* COLUNA 3: Perfil & Carrinho Apenas Ícone */}
+          {/* COLUNA 3: Perfil & Carrinho */}
           <div className="header-col-direita">
             <button 
               className="btn-lupa-mobile" 
@@ -169,10 +191,15 @@ function Header() {
       {/* Busca Mobile Expansível */}
       {buscaMobileAberta && (
         <div className="busca-mobile-drop">
-          <div className="busca-mobile-container">
-            <input type="text" placeholder="Buscar produtos..." />
-            <button type="button">Buscar</button>
-          </div>
+          <form onSubmit={handleSearch} className="busca-mobile-container">
+            <input 
+              type="text" 
+              placeholder="Buscar produtos..." 
+              value={termoBusca}
+              onChange={(e) => setTermoBusca(e.target.value)}
+            />
+            <button type="submit">Buscar</button>
+          </form>
         </div>
       )}
 

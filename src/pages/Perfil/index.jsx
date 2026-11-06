@@ -22,6 +22,9 @@ import {
 
 import './perfil.css';
 
+/**
+ * Componente responsável por gerenciar e exibir o perfil do usuário logado, permitindo a edição de dados pessoais e endereços.
+ */
 function Perfil() {
     const navigate = useNavigate();
 
@@ -78,6 +81,9 @@ function Perfil() {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
+    /**
+     * Aplica máscara de formatação ao campo CPF.
+     */
     const handleCpfChange = (e) => {
         let value = e.target.value.replace(/\D/g, '');
         if (value.length <= 11) {
@@ -88,6 +94,9 @@ function Perfil() {
         }
     };
 
+    /**
+     * Aplica máscara de formatação ao campo de data de nascimento.
+     */
     const handleDateChange = (e) => {
         let value = e.target.value.replace(/\D/g, '');
         if (value.length <= 8) {
@@ -97,6 +106,9 @@ function Perfil() {
         }
     };
 
+    /**
+     * Aplica máscara de formatação ao campo CEP.
+     */
     const handleCepChange = (e) => {
         let value = e.target.value.replace(/\D/g, '');
         if (value.length <= 8) {
@@ -107,6 +119,9 @@ function Perfil() {
         }
     };
 
+    /**
+     * Consulta o ViaCEP para preencher automaticamente os dados de endereço.
+     */
     const buscarCep = async () => {
         const cleanCep = formData.cepPessoa.replace(/\D/g, '');
         if (cleanCep.length !== 8) {
@@ -141,7 +156,9 @@ function Perfil() {
         navigate('/login');
     };
 
-    // Ação para Salvar / Atualizar os dados no Backend
+    /**
+     * Executa a submissão e atualização dos dados da pessoa junto ao backend.
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMensagem('');

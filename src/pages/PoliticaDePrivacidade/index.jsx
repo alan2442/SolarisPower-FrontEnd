@@ -1,6 +1,9 @@
 import React from "react";
 import "./PoliticaDePrivacidade.css";
 
+/**
+ * Componente responsável por renderizar a página de Política de Privacidade da aplicação SolarisPower, detalhando a conformidade com a LGPD e o tratamento de dados.
+ */
 function PoliticaDePrivacidade() {
 
     return (
@@ -233,7 +236,7 @@ function PoliticaDePrivacidade() {
                 </main>
             </div>
         </div>
-    )
+    );
 }
 
 export default PoliticaDePrivacidade;

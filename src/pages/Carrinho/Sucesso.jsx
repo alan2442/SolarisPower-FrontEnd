@@ -2,6 +2,9 @@ import React from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { CheckCircle2, ArrowLeft } from 'lucide-react';
 
+/**
+ * Componente responsável por renderizar a tela de confirmação de pagamento bem-sucedido.
+ */
 export default function Sucesso() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();

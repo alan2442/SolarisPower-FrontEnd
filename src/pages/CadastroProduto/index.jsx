@@ -20,6 +20,9 @@ import {
 
 import './cadastroProduto.css';
 
+/**
+ * Componente responsável por renderizar a tela de gestão e cadastro de produtos da empresa parceira.
+ */
 function CadastroProduto() {
     const navigate = useNavigate();
 
@@ -72,7 +75,9 @@ function CadastroProduto() {
         }
     }, [navigate]);
 
-    // Função para buscar produtos do backend
+    /**
+     * Busca a lista de produtos cadastrados associados à empresa logada no backend.
+     */
     const carregarProdutos = async (cdEmpresa) => {
         setCarregando(true);
         try {
@@ -94,7 +99,9 @@ function CadastroProduto() {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    // Handler para Upload de Arquivo
+    /**
+     * Manipula o upload e a pré-visualização da imagem do produto.
+     */
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -112,7 +119,9 @@ function CadastroProduto() {
         setTimeout(() => setMensagem({ tipo: '', texto: '' }), 4000);
     };
 
-    // Submissão do Formulário (Cadastrar / Atualizar)
+    /**
+     * Submete o formulário de cadastro ou atualização de produto para o backend.
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -168,7 +177,9 @@ function CadastroProduto() {
         }
     };
 
-    // Carregar produto para Edição
+    /**
+     * Carrega os dados de um produto selecionado para o formulário para edição.
+     */
     const carregarProdutoParaEdicao = (produto) => {
         setIsEditing(true);
         setFormData({
@@ -184,7 +195,9 @@ function CadastroProduto() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    // Excluir Produto
+    /**
+     * Remove um produto do sistema com base no ID após confirmação.
+     */
     const excluirProduto = async (id) => {
         if (window.confirm('Tem certeza que deseja excluir este produto?')) {
             try {
@@ -206,7 +219,9 @@ function CadastroProduto() {
         }
     };
 
-    // Limpar formulário
+    /**
+     * Reseta os campos do formulário e o estado de edição.
+     */
     const limparFormulario = () => {
         setIsEditing(false);
         setImagePreview(null);

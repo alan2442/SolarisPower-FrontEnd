@@ -3,6 +3,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Building2, Eye, EyeOff, Mail, Lock, AlertCircle, CheckCircle2, ArrowRight, Loader2 } from 'lucide-react';
 import './loginEmpresa.css';
 
+/**
+ * Componente responsável por renderizar a tela de login de empresas parceiras (B2B) da aplicação SolarisPower.
+ */
 function LoginEmpresa({ mensagemCadastroEmpresa, erro: erroProp }) {
     const navigate = useNavigate();
 
@@ -27,6 +30,9 @@ function LoginEmpresa({ mensagemCadastroEmpresa, erro: erroProp }) {
         setMostrarSenha((prev) => !prev);
     };
 
+    /**
+     * Executa a submissão do formulário de login corporativo autenticando junto ao backend.
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErroLogin('');

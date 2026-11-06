@@ -13,6 +13,10 @@ import solarIcon from '../../assets/images/IconesNAV/solar_power.svg';
 import suporteIcon from '../../assets/images/IconesNAV/assignment.svg';
 import planosIcon from '../../assets/images/IconesNAV/call_log.svg';
 
+/**
+ * Componente responsável por renderizar a página inicial (Home/Index) da aplicação SolarisPower,
+ * exibindo o banner principal, navegação rápida, seções de destaque e vitrine de produtos em destaque.
+ */
 function Index() {
   const [produtosDestaque, setProdutosDestaque] = useState([]);
   const [quantidades, setQuantidades] = useState({});
@@ -40,6 +44,9 @@ function Index() {
     return itemNoCarrinho ? itemNoCarrinho.quantidade : 0;
   };
 
+  /**
+   * Gerencia a alteração de quantidade selecionada para um produto específico antes de adicioná-lo ao carrinho.
+   */
   const handleQuantidadeChange = (produto, delta) => {
     const estoqueTotal = produto.quantidade || 0;
     const jaNoCarrinho = getQuantidadeNoCarrinho(produto.id);
@@ -60,6 +67,9 @@ function Index() {
     });
   };
 
+  /**
+   * Adiciona o produto selecionado ao carrinho de compras respeitando os limites de estoque.
+   */
   const handleAdicionarAoCarrinho = (produto) => {
     const estoqueTotal = produto.quantidade || 0;
     const jaNoCarrinho = getQuantidadeNoCarrinho(produto.id);

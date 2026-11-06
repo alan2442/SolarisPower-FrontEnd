@@ -2,6 +2,9 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const CartContext = createContext();
 
+/**
+ * Componente Provider responsável por gerenciar o estado global do carrinho de compras e sua persistência.
+ */
 export const CartProvider = ({ children }) => {
   // Inicializa o estado lendo do localStorage para manter os itens entre atualizações de página
   const [cartItems, setCartItems] = useState(() => {
@@ -23,7 +26,9 @@ export const CartProvider = ({ children }) => {
     }
   }, [cartItems]);
 
-  // Função para adicionar item ao carrinho
+  /**
+   * Adiciona um item ao carrinho ou incrementa sua quantidade caso já exista.
+   */
   const addToCart = (produto, quantidade = 1) => {
     if (!produto || !produto.id) return;
 
@@ -57,7 +62,9 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  // Função para atualizar quantidade diretamente ou por incremento (+1 ou -1)
+  /**
+   * Atualiza a quantidade de um item no carrinho, seja por incremento/decremento ou valor direto.
+   */
   const updateQuantity = (id, deltaOuNovaQtd, isDelta = false) => {
     setCartItems(prev =>
       prev
@@ -78,12 +85,16 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // Função para remover item diretamente
+  /**
+   * Remove um item específico do carrinho com base no ID.
+   */
   const removeFromCart = (id) => {
     setCartItems(prev => prev.filter(item => item.id !== id));
   };
 
-  // Limpa todo o carrinho
+  /**
+   * Limpa todos os itens do carrinho de compras.
+   */
   const clearCart = () => {
     setCartItems([]);
   };
@@ -106,6 +117,9 @@ export const CartProvider = ({ children }) => {
   );
 };
 
+/**
+ * Hook personalizado para consumir o contexto do carrinho de compras.
+ */
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {

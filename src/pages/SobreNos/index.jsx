@@ -1,7 +1,9 @@
 import React from 'react';
 import './sobreNos.css';
 
-
+/**
+ * Componente responsável por renderizar a página institucional "Sobre Nós" da SolarisPower, detalhando a história, missão, visão, valores e diferenciais da empresa.
+ */
 function SobreNos() {
 
     const valores = [
@@ -29,11 +31,7 @@ function SobreNos() {
         { numero: '24/7', legenda: 'Suporte e Monitoramento' }
     ];
 
-
-
     return (
-
-
         <div className="pagina-sobre">
             {/* Banner de Cabeçalho */}
             <section className="banner-sobre">
@@ -118,8 +116,6 @@ function SobreNos() {
                 </div>
             </section>
         </div>
-
-
     );
 }
 

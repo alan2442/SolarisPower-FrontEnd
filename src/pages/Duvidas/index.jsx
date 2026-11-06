@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './duvidas.css';
 
-
 const listaPerguntas = [
     {
         id: 1,
@@ -36,7 +35,9 @@ const listaPerguntas = [
     }
 ];
 
-
+/**
+ * Componente responsável por renderizar a Central de Ajuda e FAQ com filtros de categoria e busca de dúvidas.
+ */
 function Duvidas() {
 
     const [itemAberto, setItemAberto] = useState(null);

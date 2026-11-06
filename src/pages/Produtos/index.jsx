@@ -1,28 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { 
-  Search, 
-  ShoppingCart, 
-  Plus, 
-  Minus, 
-  Check, 
-  Sun, 
-  Zap, 
-  SlidersHorizontal,
-  PackageCheck,
-  X,
-  AlertTriangle,
-  Info
+    Search, 
+    ShoppingCart, 
+    Plus, 
+    Minus, 
+    Check, 
+    Sun, 
+    Zap, 
+    SlidersHorizontal,
+    PackageCheck,
+    X,
+    AlertTriangle,
+    Info
 } from 'lucide-react';
 
 import { useCart } from '../../components/Context/CartContext'; 
 import './produtos.css';
 
+/**
+ * Componente responsável por exibir o catálogo de produtos/equipamentos solares, permitindo busca, filtragem por categorias, ajuste de quantidade e adição ao carrinho.
+ */
 function Produtos() {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // Consumindo contexto do carrinho
   const { cartItems, addToCart } = useCart();
 
   const [produtos, setProdutos] = useState([]);
@@ -32,7 +35,6 @@ function Produtos() {
   const [quantidades, setQuantidades] = useState({});
   const [toast, setToast] = useState(null);
   
-  // Estado para armazenar o produto selecionado para exibir no Modal
   const [produtoModal, setProdutoModal] = useState(null);
 
   // Busca os produtos cadastrados no Banco de Dados via Spring Boot
@@ -48,6 +50,13 @@ function Produtos() {
       });
   }, []);
 
+  // Sincroniza o parâmetro ?busca= da URL com o estado da página
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const query = searchParams.get('busca') || '';
+    setBusca(query);
+  }, [location.search]);
+
   const categorias = [
     { id: 'todas', label: 'Todos os Produtos' },
     { id: 'painel', label: 'Painéis Solares' },
@@ -57,13 +66,11 @@ function Produtos() {
     { id: 'kitoffgrid', label: 'Kits Off-Grid' }
   ];
 
-  // Helper para verificar quantas unidades deste produto JÁ ESTÃO no carrinho
   const getQuantidadeNoCarrinho = (produtoId) => {
     const itemNoCarrinho = cartItems.find((item) => item.id === produtoId);
     return itemNoCarrinho ? itemNoCarrinho.quantidade : 0;
   };
 
-  // Controle de Quantidade Individual por Produto (Respeitando o Estoque Disponível)
   const handleQuantidadeChange = (produto, delta) => {
     const estoqueTotal = produto.quantidade || 0;
     const jaNoCarrinho = getQuantidadeNoCarrinho(produto.id);
@@ -75,10 +82,8 @@ function Produtos() {
       const atual = prev[produto.id] || 1;
       let novoValor = atual + delta;
 
-      // Limite mínimo
       if (novoValor < 1) novoValor = 1;
 
-      // Limite máximo baseado no estoque restante
       if (novoValor > limiteDisponivel) {
         novoValor = Math.max(1, limiteDisponivel);
       }
@@ -87,7 +92,6 @@ function Produtos() {
     });
   };
 
-  // Adicionar ao Carrinho usando o CartContext
   const adicionarAoCarrinho = (produto) => {
     const estoqueTotal = produto.quantidade || 0;
     const jaNoCarrinho = getQuantidadeNoCarrinho(produto.id);
@@ -115,7 +119,6 @@ function Produtos() {
       return;
     }
 
-    // Padronização do objeto para o CartContext
     const produtoParaAdicionar = {
       id: produto.id,
       nome: produto.nome,
@@ -125,7 +128,6 @@ function Produtos() {
       estoqueMaximo: produto.quantidade
     };
 
-    // Adiciona ao contexto global
     addToCart(produtoParaAdicionar, qtdDesejada);
 
     setToast({
@@ -134,7 +136,6 @@ function Produtos() {
       id: Date.now()
     });
 
-    // Reseta a quantidade inserida no seletor do card para 1
     setQuantidades((prev) => ({ ...prev, [produto.id]: 1 }));
 
     setTimeout(() => {
@@ -142,18 +143,30 @@ function Produtos() {
     }, 3500);
   };
 
-  // Filtros
+  const handleLimparBusca = () => {
+    setBusca('');
+    navigate('/produtos');
+  };
+
+  // Lógica de Filtro Multicritério: Nome OR Categoria OR Descrição
   const produtosFiltrados = produtos.filter((prod) => {
-    const atendeBusca = (prod.nome || '').toLowerCase().includes(busca.toLowerCase()) ||
-                       (prod.descricao || '').toLowerCase().includes(busca.toLowerCase());
+    const termo = busca.toLowerCase().trim();
     
-    const categoriaProd = (prod.categoria || '').toLowerCase();
-    const atendeCategoria = categoriaAtiva === 'todas' || categoriaProd === categoriaAtiva.toLowerCase();
+    const nome = (prod.nome || '').toLowerCase();
+    const categoria = (prod.categoria || '').toLowerCase();
+    const descricao = (prod.descricao || '').toLowerCase();
+
+    // Verifica se atende ao texto da pesquisa
+    const atendeBusca = nome.includes(termo) || 
+                         categoria.includes(termo) || 
+                         descricao.includes(termo);
+    
+    // Verifica se atende ao filtro de chips de categoria
+    const atendeCategoria = categoriaAtiva === 'todas' || categoria.includes(categoriaAtiva.toLowerCase());
     
     return atendeBusca && atendeCategoria;
   });
 
-  // Calcula total de itens no carrinho
   const totalItensNoCarrinho = cartItems.reduce((acc, item) => acc + item.quantidade, 0);
 
   return (
@@ -201,12 +214,20 @@ function Produtos() {
             <input
               type="text"
               value={busca}
-              onChange={(e) => setBusca(e.target.value)}
-              placeholder="O que você está procurando hoje?"
+              onChange={(e) => {
+                const valor = e.target.value;
+                setBusca(valor);
+                if (valor.trim()) {
+                  navigate(`/produtos?busca=${encodeURIComponent(valor.trim())}`, { replace: true });
+                } else {
+                  navigate('/produtos', { replace: true });
+                }
+              }}
+              placeholder="Buscar por produto, categoria ou palavra-chave..."
               className="search-input"
             />
             {busca && (
-              <button className="btn-clear-search" onClick={() => setBusca('')}>
+              <button className="btn-clear-search" onClick={handleLimparBusca}>
                 <X size={16} />
               </button>
             )}
@@ -241,13 +262,11 @@ function Produtos() {
               const semEstoque = estoqueTotal <= 0;
               const esgotadoNoCarrinho = disponivelParaAdicionar <= 0;
               
-              // Se a descrição for maior que 45 caracteres, exibe o botão "Ver mais detalhes"
               const descricaoLonga = produto.descricao && produto.descricao.length > 45;
 
               return (
                 <div key={produto.id} className="product-card">
                   
-                  {/* Container da Imagem com Tag de Estoque */}
                   <div className="card-image-wrapper">
                     <img 
                       src={produto.imagemBase64 || produto.imagemUrl || 'https://via.placeholder.com/400x300?text=Sem+Imagem'} 
@@ -261,14 +280,12 @@ function Produtos() {
                     </span>
                   </div>
 
-                  {/* Detalhes do Produto */}
                   <div className="card-content">
                     <div className="info-topo-card">
                       <span className="categoria-tag">{produto.categoria || 'Equipamento'}</span>
                       <h3 className="product-title">{produto.nome}</h3>
                     </div>
                     
-                    {/* Descrição limitada rigorosamente a 2 linhas */}
                     <div className="description-wrapper">
                       <p className="product-description">{produto.descricao}</p>
                       {descricaoLonga && (
@@ -290,7 +307,6 @@ function Produtos() {
                         </span>
                       </div>
 
-                      {/* Controles de Compra */}
                       <div className="card-actions-wrapper">
                         <div className="quantity-selector">
                           <button
@@ -340,7 +356,7 @@ function Produtos() {
 
       </div>
 
-      {/* --- MODAL AMPLO PARA DETALHES COMPLETOS DO PRODUTO --- */}
+      {/* MODAL DE DETALHES */}
       {produtoModal && (
         <div className="modal-overlay" onClick={() => setProdutoModal(null)}>
           <div className="modal-card-expanded" onClick={(e) => e.stopPropagation()}>

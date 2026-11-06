@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
 import { 
-  Sun, 
-  Zap, 
-  ShieldCheck, 
-  TrendingUp, 
-  Leaf, 
-  Award, 
-  Building2, 
-  Home, 
-  Tractor, 
-  CheckCircle2, 
-  ArrowRight,
-  ChevronDown,
-  Cpu,
-  Flame,
-  Droplets,
-  Box,
-  BatteryCharging
+    Sun, 
+    Zap, 
+    ShieldCheck, 
+    TrendingUp, 
+    Leaf, 
+    Award, 
+    Building2, 
+    Home, 
+    Tractor, 
+    CheckCircle2, 
+    ArrowRight,
+    ChevronDown,
+    Cpu,
+    Flame,
+    Droplets
 } from 'lucide-react';
 
 import './sobre.css';
 
-
-function Sobre () {
+/**
+ * Componente responsável por renderizar a página informativa "Sobre" da SolarisPower, explicando conceitos de energia solar, funcionamento e perguntas frequentes.
+ */
+function Sobre() {
 
     const [secaoAtiva, setSecaoAtiva] = useState('fotovoltaica');
     const [faqAberto, setFaqAberto] = useState(null);
@@ -46,12 +46,7 @@ function Sobre () {
         setFaqAberto(faqAberto === index ? null : index);
     };
 
-
-
-    return(
-
-
-
+    return (
         <main className="pagina-energia-solar">
             
             {/* Hero Section */}
@@ -174,7 +169,7 @@ function Sobre () {
                                     </ul>
                                 </div>
 
-                                {/* Diagrama Visual Fotovoltaico (Substitui imagens instáveis) */}
+                                {/* Diagrama Visual Fotovoltaico */}
                                 <div className="bloco-diagrama-fotovoltaico">
                                     <div className="card-diagrama-etapa">
                                         <div className="circulo-icone sol">
@@ -379,9 +374,6 @@ function Sobre () {
             </section>
 
         </main>
-
-
-
     );
 }
 

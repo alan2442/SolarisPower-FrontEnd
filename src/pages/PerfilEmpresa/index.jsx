@@ -22,6 +22,9 @@ import {
 
 import './perfilEmpresa.css';
 
+/**
+ * Componente responsável por gerenciar e exibir o painel e perfil da empresa parceira (B2B), permitindo a atualização de dados corporativos e da sede comercial.
+ */
 function PerfilEmpresa() {
     const navigate = useNavigate();
 
@@ -43,7 +46,9 @@ function PerfilEmpresa() {
         complementoEmpresa: ''
     });
 
-    // Função para formatar CNPJ
+    /**
+     * Aplica máscara de formatação ao campo CNPJ.
+     */
     const formatarCNPJ = (val) => {
         if (!val) return '';
         let clean = val.toString().replace(/\D/g, '');
@@ -56,7 +61,9 @@ function PerfilEmpresa() {
         return clean;
     };
 
-    // Função para formatar CEP
+    /**
+     * Aplica máscara de formatação ao campo CEP.
+     */
     const formatarCEP = (val) => {
         if (!val) return '';
         let clean = val.toString().replace(/\D/g, '');
@@ -114,6 +121,9 @@ function PerfilEmpresa() {
         }
     };
 
+    /**
+     * Consulta o ViaCEP para preencher automaticamente os dados de endereço da empresa.
+     */
     const buscarCep = async () => {
         const cleanCep = formData.cepEmpresa.replace(/\D/g, '');
         if (cleanCep.length !== 8) {
@@ -148,7 +158,9 @@ function PerfilEmpresa() {
         navigate('/loginEmpresa');
     };
 
-    // Ação de Atualização dos Dados (PUT)
+    /**
+     * Executa a submissão e atualização dos dados da empresa junto ao backend.
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMensagem('');

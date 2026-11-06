@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { 
-  Building2, 
-  Mail, 
-  Lock, 
-  Eye, 
-  EyeOff, 
-  AlertCircle, 
-  ArrowRight, 
-  Sun, 
-  Briefcase, 
-  FileBadge,
-  Loader2,
-  CheckCircle2
+import {
+    Building2,
+    Mail,
+    Lock,
+    Eye,
+    EyeOff,
+    AlertCircle,
+    ArrowRight,
+    Sun,
+    Briefcase,
+    FileBadge,
+    Loader2,
+    CheckCircle2
 } from 'lucide-react';
 import './cadastroEmpresa.css';
 
+/**
+ * Componente responsável por renderizar a tela de cadastro de empresas parceiras do sistema.
+ */
 function CadastroEmpresa({ erroCadastro: erroProp }) {
     const navigate = useNavigate();
 
@@ -59,6 +62,9 @@ function CadastroEmpresa({ erroCadastro: erroProp }) {
         }));
     };
 
+    /**
+     * Valida os dados do formulário e envia a requisição de cadastro corporativo para o backend.
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErroValidacao('');
@@ -96,7 +102,7 @@ function CadastroEmpresa({ erroCadastro: erroProp }) {
                 setErroValidacao(data.mensagem || 'Ocorreu um erro ao cadastrar a empresa.');
             } else {
                 setSucessoMensagem('Empresa cadastrada com sucesso! Redirecionando para o login...');
-                
+
                 setTimeout(() => {
                     navigate('/loginEmpresa');
                 }, 2000);

@@ -19,6 +19,9 @@ import {
 import { useCart } from '../../components/Context/CartContext';
 import './carrinho.css';
 
+/**
+ * Componente responsável por gerenciar e exibir o carrinho de compras, cálculos de frete, cupons e checkout de pagamento.
+ */
 function Carrinho() {
     const navigate = useNavigate();
     const { cartItems, updateQuantity, removeFromCart } = useCart();
@@ -30,7 +33,9 @@ function Carrinho() {
     const [freteCalculado, setFreteCalculado] = useState(null);
     const [carregandoPagamento, setCarregandoPagamento] = useState(false);
 
-    // Alterar Quantidade
+    /**
+     * Altera a quantidade de um item específico no carrinho.
+     */
     const handleUpdateQuantity = (id, delta) => {
         const item = cartItems.find((i) => i.id === id);
         if (item) {
@@ -45,6 +50,9 @@ function Carrinho() {
         removeFromCart(id);
     };
 
+    /**
+     * Valida e aplica o cupom de desconto informado pelo usuário.
+     */
     const handleApplyCoupon = (e) => {
         e.preventDefault();
         if (cupomInput.trim().toUpperCase() === 'SOLAR10') {
@@ -55,6 +63,9 @@ function Carrinho() {
         }
     };
 
+    /**
+     * Simula o cálculo do frete com base no CEP digitado.
+     */
     const handleCalculateFreight = (e) => {
         e.preventDefault();
         if (cepInput.trim().length >= 8) {
@@ -76,7 +87,9 @@ function Carrinho() {
     );
 
 
-    // FUNÇÃO DE CHECKOUT MERCADO PAGO
+    /**
+     * Executa o processo de checkout e integração com a preferência de pagamento do Mercado Pago.
+     */
     const handleCheckout = async () => {
         if (!cartItems || cartItems.length === 0) return;
 

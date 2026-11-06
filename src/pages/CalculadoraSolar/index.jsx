@@ -12,7 +12,9 @@ import { CONCESSIONARIAS, MAPA_UF_CONCESSIONARIA } from './constants';
 
 import './calculadoraSolar.css';
 
-
+/**
+ * Componente responsável por renderizar a calculadora solar interactiva para estimativa de economia de energia.
+ */
 function CalculadoraSolar() {
 
     const [cep, setCep] = useState('');
@@ -31,6 +33,9 @@ function CalculadoraSolar() {
         return 'R$ ' + valor.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
     };
 
+    /**
+     * Manipula a alteração do CEP, aplicando máscara e consultando a concessionária correspondente via ViaCEP.
+     */
     const handleCepChange = async (e) => {
         let value = e.target.value.replace(/\D/g, '');
 
@@ -54,6 +59,9 @@ function CalculadoraSolar() {
         }
     };
 
+    /**
+     * Formata o valor monetário do gasto mensal digitado pelo usuário.
+     */
     const handleGastoChange = (e) => {
         let value = e.target.value.replace(/\D/g, '');
         if (!value) {
@@ -68,6 +76,9 @@ function CalculadoraSolar() {
         setGasto(`R$ ${formatted}`);
     };
 
+    /**
+     * Valida os dados informados e calcula a estimativa de economia solar mensal e anual.
+     */
     const handleSimular = (e) => {
         e.preventDefault();
 
@@ -104,6 +115,9 @@ function CalculadoraSolar() {
         setExibirResultado(true);
     };
 
+    /**
+     * Reseta os resultados da simulação para permitir uma nova consulta.
+     */
     const handleReset = () => {
         setExibirResultado(false);
         setEmail('');

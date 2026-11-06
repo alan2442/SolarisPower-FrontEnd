@@ -1,8 +1,9 @@
-
-
+import React from 'react';
 import "./TermosDeUso.css";
 
-
+/**
+ * Componente responsável por renderizar a página de Termos e Condições de Uso da plataforma SolarisPower.
+ */
 function TermosDeUso() {
     return (
         <div className="pagina-termos">
@@ -12,7 +13,7 @@ function TermosDeUso() {
                     <span className="badge-tag-termos">Termos & Diretrizes</span>
                     <h1>Termos e Condições de <span>Uso</span></h1>
                     <p className="termos-hero-data">
-                        <strong>Solaris Power</strong> • Última atualização: 22 de outubro de 2026
+                        <strong>Solaris Power</strong> — Última atualização: 22 de outubro de 2026
                     </p>
                 </div>
             </header>
@@ -180,7 +181,7 @@ function TermosDeUso() {
                             <h2>7. Modificações dos Termos</h2>
                         </div>
                         <p style={{ color: '#4a5568', lineHeight: '1.6' }}>
-                            A Solaris Power reserva-se a alterar estes Termos de Uso a qualquer momento, visando a melhoria contínua da plataforma ou adaptação a novas exigências legais. As alterações entrarão em vigor imediatamente após a sua publicação na plataforma. O uso continuado após tais modificações implica na concordância com os novos termos.
+                            A Solaris Power reserva-se o direito de alterar estes Termos de Uso a qualquer momento, visando a melhoria contínua da plataforma ou adaptação a novas exigências legais. As alterações entrarão em vigor imediatamente após a sua publicação na plataforma. O uso continuado após tais modificações implica na concordância com os novos termos.
                         </p>
                     </section>
 

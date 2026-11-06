@@ -4,7 +4,9 @@ import { Eye, EyeOff, Mail, Lock, AlertCircle, CheckCircle2, ArrowRight, Loader2
 import { useLocation } from 'react-router-dom';
 import './login.css';
 
-
+/**
+ * Componente responsável por renderizar a tela de login de clientes da aplicação SolarisPower.
+ */
 function Login({ mensagemCadastroUsuario, erro: erroProp }) {
 
     const navigate = useNavigate();
@@ -30,6 +32,9 @@ function Login({ mensagemCadastroUsuario, erro: erroProp }) {
         setMostrarSenha((prev) => !prev);
     };
 
+    /**
+     * Executa a submissão do formulário de login de clientes autenticando junto ao backend.
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErroLogin('');
@@ -78,7 +83,7 @@ function Login({ mensagemCadastroUsuario, erro: erroProp }) {
 
     return (
 
-            
+        
 
         <main className="pagina-login">
 

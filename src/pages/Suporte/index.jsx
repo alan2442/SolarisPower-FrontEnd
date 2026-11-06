@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import './suporte.css';
 
-
+/**
+ * Componente responsável por renderizar a Central de Suporte e Atendimento da SolarisPower, integrado ao EmailJS para envio de formulário e fornecendo canais diretos via WhatsApp e E-mail.
+ */
 function Suporte() {
-
-
     const [formData, setFormData] = useState({
         nome: '',
         email: '',
@@ -13,46 +14,54 @@ function Suporte() {
         mensagem: ''
     });
 
-    const [statusEnvio, setStatusEnvio] = useState(null); // 'sucesso' | 'enviando' | null
+    const [statusEnvio, setStatusEnvio] = useState(null); // 'sucesso' | 'enviando' | 'erro' | null
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
+    /**
+     * Trata o envio do formulário de suporte utilizando a integração cliente EmailJS.
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatusEnvio('enviando');
 
-        try {
-            const response = await fetch('http://localhost:8080/api/suporte', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
+        // Dados enviados para o EmailJS
+        const templateParams = {
+            from_name: formData.nome,
+            email: formData.email,
+            telefone: formData.telefone,
+            assunto: formData.assunto,
+            message: formData.mensagem
+        };
 
-            if (response.ok) {
+        // Credenciais atualizadas com o Service ID
+        emailjs.send("service_ai6nrbu", "template_ejiabkk", templateParams, "k2X0yosORmtmUs16u")
+            .then((response) => {
+                console.log("EMAIL ENVIADO COM SUCESSO", response.status, response.text);
                 setStatusEnvio('sucesso');
-                setFormData({ nome: '', email: '', telefone: '', assunto: '', mensagem: '' });
-            } else {
+                
+                // Limpa o formulário após o envio
+                setFormData({
+                    nome: '',
+                    email: '',
+                    telefone: '',
+                    assunto: '',
+                    mensagem: '',
+                });
+            })
+            .catch((err) => {
+                console.error("ERRO AO ENVIAR E-MAIL: ", err);
                 setStatusEnvio('erro');
-            }
-        } catch (error) {
-            console.error('Erro ao enviar mensagem:', error);
-            setStatusEnvio('erro');
-        } finally {
-            // Reseta a mensagem de status após 5 segundos
-            setTimeout(() => setStatusEnvio(null), 5000);
-        }
+            })
+            .finally(() => {
+                setTimeout(() => setStatusEnvio(null), 5000);
+            });
     };
 
-
-
     return (
-
-
         <div className="pagina-suporte">
             {/* Banner Principal */}
             <section className="banner-suporte">
@@ -96,7 +105,7 @@ function Suporte() {
 
                                 {/* Atendimento via E-mail */}
                                 <a
-                                    href="mailto:solarispower@hotmail.com?subject=Suporte%20SolarisPower"
+                                    href="mailto:alan.nogueira40@hotmail.com?subject=Suporte%20SolarisPower"
                                     className="item-canal email"
                                 >
                                     <div className="icone-canal">
@@ -106,7 +115,7 @@ function Suporte() {
                                     </div>
                                     <div className="texto-canal">
                                         <span className="rotulo-canal">E-mail de Suporte</span>
-                                        <strong className="valor-canal">solarispower@hotmail.com</strong>
+                                        <strong className="valor-canal">alan.nogueira40@hotmail.com</strong>
                                         <span className="subtexto-canal">Resposta garantida em até 24h úteis</span>
                                     </div>
                                 </a>
@@ -130,6 +139,12 @@ function Suporte() {
                             {statusEnvio === 'sucesso' && (
                                 <div className="mensagem-alerta sucesso">
                                     ✓ Mensagem enviada com sucesso! Nossa equipe retornará em breve.
+                                </div>
+                            )}
+
+                            {statusEnvio === 'erro' && (
+                                <div className="mensagem-alerta erro">
+                                    Não foi possível enviar sua mensagem. Tente novamente mais tarde.
                                 </div>
                             )}
 
@@ -214,8 +229,6 @@ function Suporte() {
                 </div>
             </section>
         </div>
-
-
     );
 }
 

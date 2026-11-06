@@ -1,11 +1,15 @@
+import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-// 1. Importe o CartProvider do caminho onde criou o arquivo context
+// Provider do contexto global do carrinho de compras
 import { CartProvider } from "./components/Context/CartContext";
 
+// Componentes Globais de Layout
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ChatBot from "./components/ChatBot/ChatBot";
 
+// Componentes de Páginas
 import Erro from "./pages/Erro";
 import Index from "./pages/Index";
 import SobreNos from "./pages/SobreNos";
@@ -22,15 +26,15 @@ import CalculadoraSolar from "./pages/CalculadoraSolar";
 import Perfil from "./pages/Perfil";
 import PerfilEmpresa from "./pages/PerfilEmpresa";
 import CadastroProduto from "./pages/CadastroProduto";
-import ChatBot from "./components/ChatBot/ChatBot";
 import PoliticaDePrivacidade from "./pages/PoliticaDePrivacidade";
 import TermosDeUso from "./pages/TermosDeUso";
 
-
-// Páginas de Retorno do Mercado Pago
+// Páginas de Retorno do Checkout Mercado Pago
 import Sucesso from './pages/Carrinho/Sucesso';
 
-// Componente simples para a página de Pagamento Cancelado / Erro
+/**
+ * Componente renderizado quando o pagamento é cancelado ou apresenta erro no checkout.
+ */
 function PagamentoErro() {
   return (
     <div style={{ textAlign: 'center', padding: '4rem 1rem' }}>
@@ -55,7 +59,9 @@ function PagamentoErro() {
   );
 }
 
-// Componente simples para a página de Pagamento Pendente (ex: Boleto / Análise)
+/**
+ * Componente renderizado quando o pagamento fica pendente de aprovação (ex: Boleto ou análise de crédito).
+ */
 function PagamentoPendente() {
   return (
     <div style={{ textAlign: 'center', padding: '4rem 1rem' }}>
@@ -80,10 +86,12 @@ function PagamentoPendente() {
   );
 }
 
+/**
+ * Componente responsável pelo roteamento principal da aplicação SolarisPower, configurando as rotas da aplicação dentro de um BrowserRouter e CartProvider.
+ */
 function RoutesApp() {
   return (
     <BrowserRouter>
-      {/* 2. Envolva toda a estrutura com o CartProvider */}
       <CartProvider>
         <div className="app-container">
           <Header />
@@ -108,16 +116,14 @@ function RoutesApp() {
               <Route path="/politicaDePrivacidade" element={<PoliticaDePrivacidade />} />
               <Route path="/termosDeUso" element={<TermosDeUso />} />
 
-
-              {/* Rotas de Retorno do Checkout Mercado Pago */}
+              {/* Rotas de Retorno do Mercado Pago */}
               <Route path="/sucesso" element={<Sucesso />} />
               <Route path="/erro" element={<PagamentoErro />} />
               <Route path="/pendente" element={<PagamentoPendente />} />
 
+              {/* Rota 404 - Página Não Encontrada */}
               <Route path="*" element={<Erro />} />
             </Routes> 
-
-
           </main>
 
           <Footer />

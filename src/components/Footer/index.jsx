@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './footer.css';
 
-
+/**
+ * Componente responsável por renderizar o rodapé do site da SolarisPower.
+ */
 function Footer() {
     const anoAtual = new Date().getFullYear();
     return (

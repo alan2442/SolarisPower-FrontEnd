@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './ChatBot.css';
 
+/**
+ * Componente responsável por renderizar a interface do chatbot flutuante da SolarisPower.
+ */
 function Chatbot() {
   const [aberto, setAberto] = useState(false);
     const [mensagem, setMensagem] = useState('');
@@ -13,6 +16,9 @@ function Chatbot() {
         }
     ]);
 
+    /**
+     * Envia a mensagem digitada para a API do backend e atualiza o histórico de conversas.
+     */
     const enviarMensagem = async (e) => {
         e.preventDefault();
 
@@ -166,6 +172,5 @@ function Chatbot() {
         </div>
     );
 }
-
 
 export default Chatbot;
