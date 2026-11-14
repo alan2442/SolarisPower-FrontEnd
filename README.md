@@ -1,6 +1,6 @@
 ## 🎯 Objetivo do Projeto
 
-O **[SolarisPower]** tem como missão principal democratizar e simplificar o acesso à energia solar, conectando fornecedores e fabricantes de equipamentos fotovoltaicos diretamente a instaladores, empresas e clientes finais. 
+O **SolarisPower** tem como missão principal democratizar e simplificar o acesso à energia solar, conectando fornecedores e fabricantes de equipamentos fotovoltaicos diretamente a instaladores, empresas e clientes finais. 
 
 Nossa plataforma atua como um *marketplace* especializado, eliminando barreiras logísticas e burocráticas do setor. O objetivo é criar um ecossistema digital completo onde:
 * **Empresas parceiras** (distribuidoras e fabricantes) escalam suas vendas e alcançam novos mercados com facilidade.
