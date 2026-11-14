@@ -121,7 +121,8 @@ openai.model=gpt-6-luna
 src/main/java/com/example/solarispower/SolarispowerApplication.java
 (O Hibernate criará as tabelas e relações automaticamente no banco solarispower).
 
-💻 2. Configurando e Rodando o Front-end
+### 💻 2. Configurando e Rodando o Front-end
+
 2.1 - Acesse o repositório do front-end: SolarisPower-FrontEnd e baixe/clone o projeto.
 
 2.2 - Abra um terminal na pasta do front-end.
@@ -129,7 +130,6 @@ src/main/java/com/example/solarispower/SolarispowerApplication.java
 2.3 - Instale as dependências necessárias:
 Bash
 npm install axios @emailjs/browser lucide-react
-
 
 2.4 - Inicie o servidor de desenvolvimento:
 Bash
