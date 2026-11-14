@@ -34,6 +34,9 @@ EmailJS — Serviço de envio de e-mails integrado diretamente ao módulo de sup
 
 API OpenAI (ChatGPT) — Inteligência artificial integrada para alimentar o chatbot de atendimento ao cliente.
 
+## Infraestrutura & Deploy (Nuvem)
+* **Microsoft Azure** — Hospedagem, gerenciamento de servidores e deploy da aplicação.
+
 # Extensões do VS Code
 Spring Boot Extension Pack
 
