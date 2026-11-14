@@ -99,7 +99,6 @@ Certifique-se de ter instalado em sua máquina:
 1.4 - Verifique o arquivo de propriedades em src/main/resources/application.properties:
 
 ```
-Properties
 spring.application.name=solarispower
 server.port=8080
 
@@ -109,7 +108,7 @@ spring.ai.openai.chat.options.model=gpt-4o-mini
 spring.ai.openai.chat.options.temperature=0.7
 
 # Configuração do Mercado Pago
-mercadopago.access_token=TEST-7751286980864329-052313-3bb1b2989a05299322a6714e008a7789-651291232
+mercadopago.access_token=SEU_ACCESS_TOKEN_MERCADO_PAGO_AQUI
 
 # Configuração do chatbot via variáveis de ambiente
 openai.api-key=${OPENAI_API_KEY}
