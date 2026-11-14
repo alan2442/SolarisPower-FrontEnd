@@ -87,7 +87,52 @@ Certifique-se de ter instalado em sua máquina:
 
 ### 🗄️ 1. Configurando e Rodando o Back-end
 
-1. Acesse o repositório e baixe o código do back-end: [SolarisPower (Back-end)](https://github.com/alan2442/SolarisPower/tree/main)
-2. Abra o seu gerenciador MySQL e crie o banco de dados da aplicação:
-   ```sql
-   CREATE DATABASE solarispower;
+1.1 - Acesse o repositório e baixe o código do back-end: [SolarisPower (Back-end)](https://github.com/alan2442/SolarisPower/tree/main)
+
+1.2 - Abra o seu gerenciador MySQL e crie o banco de dados da aplicação:
+   ``` CREATE DATABASE solarispower; ```
+
+1.3 - As credenciais de acesso ao banco estão centralizadas na classe de configuração do projeto:
+src/main/java/com/example/solarispower/DataConfiguration.java
+(Caso seu usuário ou senha do MySQL sejam diferentes, atualize os valores diretamente nesta classe).
+
+1.4 - Verifique o arquivo de propriedades em src/main/resources/application.properties:
+
+```
+Properties
+spring.application.name=solarispower
+server.port=8080
+
+# Configuração da OpenAI no Spring AI
+spring.ai.openai.api-key=SUA_CHAVE_OPENAI_AQUI
+spring.ai.openai.chat.options.model=gpt-4o-mini
+spring.ai.openai.chat.options.temperature=0.7
+
+# Configuração do Mercado Pago
+mercadopago.access_token=TEST-7751286980864329-052313-3bb1b2989a05299322a6714e008a7789-651291232
+
+# Configuração do chatbot via variáveis de ambiente
+openai.api-key=${OPENAI_API_KEY}
+openai.model=gpt-6-luna
+```
+
+
+1.5 - Para rodar a aplicação, execute a classe principal do Spring Boot:
+src/main/java/com/example/solarispower/SolarispowerApplication.java
+(O Hibernate criará as tabelas e relações automaticamente no banco solarispower).
+
+💻 2. Configurando e Rodando o Front-end
+2.1 - Acesse o repositório do front-end: SolarisPower-FrontEnd e baixe/clone o projeto.
+
+2.2 - Abra um terminal na pasta do front-end.
+
+2.3 - Instale as dependências necessárias:
+Bash
+npm install axios @emailjs/browser lucide-react
+
+
+2.4 - Inicie o servidor de desenvolvimento:
+Bash
+npm run dev
+
+2.5 - Acesse o link exibido no terminal (geralmente http://localhost:5173) para interagir com o marketplace.
