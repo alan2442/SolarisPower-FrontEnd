@@ -93,7 +93,7 @@ Certifique-se de ter instalado em sua máquina:
    ``` CREATE DATABASE solarispower; ```
 
 1.3 - As credenciais de acesso ao banco estão centralizadas na classe de configuração do projeto:
-src/main/java/com/example/solarispower/DataConfiguration.java
+```src/main/java/com/example/solarispower/DataConfiguration.java```
 (Caso seu usuário ou senha do MySQL sejam diferentes, atualize os valores diretamente nesta classe).
 
 1.4 - Verifique o arquivo de propriedades em src/main/resources/application.properties:
@@ -118,7 +118,7 @@ openai.model=gpt-6-luna
 
 
 1.5 - Para rodar a aplicação, execute a classe principal do Spring Boot:
-src/main/java/com/example/solarispower/SolarispowerApplication.java
+```src/main/java/com/example/solarispower/SolarispowerApplication.java```
 (O Hibernate criará as tabelas e relações automaticamente no banco solarispower).
 
 ### 💻 2. Configurando e Rodando o Front-end
@@ -128,11 +128,9 @@ src/main/java/com/example/solarispower/SolarispowerApplication.java
 2.2 - Abra um terminal na pasta do front-end.
 
 2.3 - Instale as dependências necessárias:
-Bash
-npm install axios @emailjs/browser lucide-react
+``` Bash npm install axios @emailjs/browser lucide-react```
 
 2.4 - Inicie o servidor de desenvolvimento:
-Bash
-npm run dev
+```Bash npm run dev```
 
 2.5 - Acesse o link exibido no terminal (geralmente http://localhost:5173) para interagir com o marketplace.
