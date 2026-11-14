@@ -28,7 +28,7 @@ Lombok — Biblioteca Java utilizada para reduzir o código boilerplate (geraç�
 ## Banco de Dados & Integrações
 SQL / MySQL — Banco de dados relacional para persistência de dados de usuários, produtos e pedidos.
 
-API do Mercado Livre — Integração para [explicar brevemente o uso, ex: meios de pagamento, logística ou importação de dados].
+API do Mercado Pago — Integração para realizar pagamentos.
 
 EmailJS — Serviço de envio de e-mails integrado diretamente ao módulo de suporte da plataforma.
 
@@ -40,3 +40,23 @@ Spring Boot Extension Pack
 Extension Pack for Java
 
 MySQL (vscode-mysql ou similar)
+
+
+
+# ⚙️ Requisitos Funcionais (RF)
+* **Cadastro e Autenticação:** Perfis distintos para Empresas (vendedores de equipamentos fotovoltaicos) e Clientes (compradores).
+* **Gestão de Produtos:** Empresas cadastradas podem gerenciar seu catálogo de produtos solares (painéis, inversores, baterias, etc.).
+* **Carrinho e Checkout:** Sistema de compras integrado com simulação de pedidos.
+* **Suporte Automatizado:** Chatbot inteligente integrado via API do ChatGPT para tirar dúvidas dos usuários em tempo real.
+* **Canal de Atendimento (Suporte):** Envio de mensagens de suporte por e-mail utilizando o EmailJS.
+* **Integração com Marketplace Externo:** Conexão com ferramentas do ecossistema do Mercado Livre.
+
+# 💻 Requisitos Técnicos / Pré-requisitos para Execução
+Para rodar este projeto localmente, certifique-se de ter instalado em sua máquina:
+* **JDK 21** configurado no *Path* do sistema.
+* **Node.js** e **npm** (para executar o front-end em React).
+* Servidor **MySQL** rodando localmente ou em nuvem.
+* Chaves de API configuradas para:
+  * API OpenAI (ChatGPT)
+  * EmailJS
+  * Credenciais da API do Mercado Pago
