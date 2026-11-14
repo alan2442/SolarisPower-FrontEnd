@@ -1,4 +1,4 @@
-# ☀️ Solaris Power — Marketplace de Energia Fotovoltaica
+# ☀️ Solaris Power 
 
 <div align="center">
 
@@ -7,10 +7,18 @@
 [![Status do Projeto](https://img.shields.io/badge/Status-Em_Produção-brightgreen?style=flat-square)]()
 [![Deploy](https://img.shields.io/badge/Deploy-Microsoft_Azure-blue?style=flat-square&logo=microsoft-azure)]()
 [![Java](https://img.shields.io/badge/Java-21-orange?style=flat-square&logo=openjdk)]()
-[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-green?style=flat-square&logo=springboot)]()
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.4.4-green?style=flat-square&logo=springboot)]()
 [![React](https://img.shields.io/badge/React-Vite-blue?style=flat-square&logo=react)]()
 
 </div>
+
+---
+
+## 📂 Repositórios do Projeto
+
+O projeto está dividido em duas partes (Arquitetura Monorepo/Microsserviços separados):
+* **🖥️ Back-end (Spring Boot):** [Acessar Repositório do Back-end](https://github.com/alan2442/SolarisPower/tree/main)
+* **💻 Front-end (React):** [Acessar Repositório do Front-end](https://github.com/alan2442/SolarisPower-FrontEnd)
 
 ---
 
@@ -36,14 +44,15 @@ Nossa plataforma atua como um *marketplace* especializado, eliminando barreiras 
 
 ### **Back-end**
 * **Java 21 (JDK 21)**
-* **Spring Boot**
-* **Spring Data JPA / Hibernate** (gerenciamento e criação automática de tabelas)
+* **Spring Boot 3.4.4**
+* **Spring Data JPA / Hibernate** (configurado via código na classe `DataConfiguration`)
+* **Spring AI** (integração com OpenAI para o chatbot)
 * **Lombok** (redução de código *boilerplate*)
-* **Spring AI** (integração com IA)
+* **Mercado Pago SDK** (integração de pagamentos)
+* **Spring Mail** (envio de e-mails)
 
 ### **Banco de Dados & Integrações**
 * **MySQL** (Banco de dados relacional)
-* **API do Mercado Livre / Mercado Pago** (pagamentos e transações)
 * **API OpenAI (ChatGPT)** (chatbot de atendimento inteligente)
 * **EmailJS** (serviço de mensagens via suporte)
 
@@ -62,9 +71,9 @@ Nossa plataforma atua como um *marketplace* especializado, eliminando barreiras 
 ### ⚙️ Requisitos Funcionais
 * **Cadastro e Autenticação:** Perfis distintos para empresas vendedoras e clientes compradores.
 * **Gestão de Catálogo:** Empresas podem gerenciar seus produtos fotovoltaicos.
-* **Carrinho e Checkout:** Sistema de compras com integração de pagamentos.
-* **Atendimento Automatizado:** Chatbot inteligente integrado via OpenAI para tirar dúvidas dos usuários em tempo real.
-* **Suporte via E-mail:** Canal de atendimento integrado com EmailJS.
+* **Carrinho e Checkout:** Sistema de compras integrado com pagamentos via Mercado Pago.
+* **Atendimento Automatizado:** Chatbot inteligente integrado via Spring AI (OpenAI) para tirar dúvidas em tempo real.
+* **Suporte via E-mail:** Canal de atendimento integrado com EmailJS e Spring Mail.
 
 ### 💻 Pré-requisitos para Execução Local
 Certifique-se de ter instalado em sua máquina:
@@ -76,8 +85,9 @@ Certifique-se de ter instalado em sua máquina:
 
 ## 🚀 Como Rodar o Projeto Localmente
 
-### 🗄️ 1. Configurando o Back-end (Spring Boot)
+### 🗄️ 1. Configurando e Rodando o Back-end
 
-1. Crie um banco de dados vazio no seu MySQL:
+1. Acesse o repositório e baixe o código do back-end: [SolarisPower (Back-end)](https://github.com/alan2442/SolarisPower/tree/main)
+2. Abra o seu gerenciador MySQL e crie o banco de dados da aplicação:
    ```sql
    CREATE DATABASE solarispower;
